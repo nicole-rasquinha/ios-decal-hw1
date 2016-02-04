@@ -22,31 +22,33 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: The instance variables are implicitly unwrapped optional Strings, whereas the parameters passed in to **init** are optional Strings. Essentially, they are both optional Strings, but an implicitly unwrapped optional gives permission to be automatically unwrapped any time it is used. On the other hand, optional Strings require an exclamation mark to explicitly unwrap whenever it is used.
 
 
 //: ## Q2: Variable Types and Function Types
     func arePalindromes(words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reverse())}
-        var numElements = words.count
+        let numElements = words.count
         
-        for let i = 0; i < numElements; i++ {
+        for var i = 0; i < numElements; i++ {
             if words[i] != reversedWords[i] {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
-
-
-//: [EXPLAIN YOUR ANSWER HERE]
+    
+    
+//: The error says: Can not pass immutable value to a mutating operator. 'i' is a 'let' constant. Essentially, let statements make constants -- values never change. Fixed by changing 'let' to 'var'
+//: Another issue is that the function never returns true. We need to add this outside the for loop.
 
 
 //: ## Q3: More Functions and Object Initialization
     class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
+        var countLetters : [Character : Int] = [Character: Int]() //Line X
         var lenA = self.wordA.characters.count
         var lenB = self.wordB.characters.count
         
@@ -89,7 +91,8 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: We have to initialize the dictionary on **Line X**
+//:
     
     
 }
