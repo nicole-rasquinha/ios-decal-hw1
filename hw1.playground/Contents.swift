@@ -26,7 +26,7 @@ class Words {
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(words: [String]) -> Bool {
+    class func arePalindromes(words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reverse())}
         let numElements = words.count
         
@@ -43,11 +43,11 @@ class Words {
     
     
 //: The error says: Can not pass immutable value to a mutating operator. 'i' is a 'let' constant. Essentially, let statements make constants -- values never change. Fixed by changing 'let' to 'var'
-//: Another issue is that the function never returns true. We need to add this outside the for loop.
+//: arePalindromes should be a static method, as denoted by the fact that you call Words.arePalindromes(...) Another issue is that the function never returns true. We need to add this outside the for loop.
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
+    func isAnagram() -> Bool {
         var countLetters : [Character : Int] = [Character: Int]() //Line X
         var lenA = self.wordA.characters.count
         var lenB = self.wordB.characters.count
@@ -83,7 +83,7 @@ class Words {
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -92,7 +92,7 @@ class Words {
 
 
 //: We have to initialize the dictionary on **Line X**
-//:
+//: Firstly, isAnagram should be an instance method, not static (class). Also, we never return true at the end of the function.
     
     
 }
